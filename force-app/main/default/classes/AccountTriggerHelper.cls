@@ -1,4 +1,6 @@
 public with sharing class AccountTriggerHelper {
+
+    // Trigger that can be run only once.
     public static void createFirstContact(List<Account> triggerNew){
         List<Contact> contList = new List<Contact>();
         Map<Id,Account> acctsWithContacts = new Map<Id,Account>([
@@ -19,7 +21,8 @@ public with sharing class AccountTriggerHelper {
             insert contList;
         }
     }
-    
+    // Move task creation logic to future method; set Task.IsSynced = false
+
     public static void returnIDAcc(List<Account> triggerNew){
         List<Account> listAcc = [
             SELECT Id 
@@ -45,6 +48,10 @@ public with sharing class AccountTriggerHelper {
         }
         update tasks;
     }
+
+    // Create future method:
+    // a For accounts in which BillingAddress changed select all related Contacts 
+    // b Set to all Contacts Is Synced = false; Processed By Future = true;
 
     public static void changedBillingAddress(List<Account> triggerNew, Map<ID,Account> triggerOldMap, Map<ID,Account> triggerNewMap){
         List <ID> idAcc = new List <ID>();
@@ -72,5 +79,13 @@ public with sharing class AccountTriggerHelper {
             c.Processed_By_Future__c = true;
         }
         update contacts;
+    }
+
+    // Call Queueble Job, which perform similar logic:
+    // a For accounts in which BillingAddress changed select all related Contacts
+    // b Set to all Contacts Is Synced = false; Processed By Queue = true;
+
+    public static void addressQueueable(List<Account> triggerNew,Map<ID,Account> triggerOldMap, Map<ID,Account> triggerNewMap){
+        System.enqueueJob(new BillingAddressQueueable(triggerNew, triggerOldMap, triggerNewMap));
     }
 }

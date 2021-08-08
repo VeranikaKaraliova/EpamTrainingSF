@@ -10,5 +10,6 @@ public with sharing class AccountTriggerHandler {
 
     public static void handlerBeforeUpdate(List<Account> triggerNew, Map<ID,Account> triggerOldMap, Map<ID,Account> triggerNewMap){
         AccountTriggerHelper.changedBillingAddress(triggerNew, triggerOldMap, triggerNewMap);
+        AccountTriggerHelper.addressQueueable(triggerNew, triggerOldMap, triggerNewMap);
     }
 }
