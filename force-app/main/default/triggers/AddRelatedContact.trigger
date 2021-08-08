@@ -11,4 +11,8 @@ trigger AddRelatedContact on Account (
     AccountTriggerHandler.handlerAfterInsert(Trigger.new);
   }
 
+  if(Trigger.isUpdate && Trigger.isAfter){
+    AccountTriggerHandler.handlerAfterUpdate(Trigger.new);
+  }
+
 }
