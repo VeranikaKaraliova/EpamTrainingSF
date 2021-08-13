@@ -1,6 +1,10 @@
 public class BatchContactMailingAddress implements Database.Batchable<sObject>, Database.Stateful {
 	public Database.QueryLocator start(Database.BatchableContext bc) {
-        return Database.getQueryLocator('SELECT ID, AccountId, MailingStreet, MailingCountry,MailingCity, Is_Synced__c FROM Contact WHERE Is_Synced__c = false');
+        return Database.getQueryLocator(
+            'SELECT ID, AccountId, MailingStreet, ' + 
+            'MailingCountry,MailingCity, Is_Synced__c ' + 
+            'FROM Contact ' + 
+            'WHERE Is_Synced__c = false');
     }
     
     public void execute(Database.BatchableContext bc,List<Contact> contacts){
