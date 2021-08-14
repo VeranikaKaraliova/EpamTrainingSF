@@ -24,11 +24,6 @@ public with sharing class AccountTriggerHelper {
     // Move task creation logic to future method; set Task.IsSynced = false
 
     public static void returnIDAcc(List<Account> triggerNew){
-        // List<Account> listAcc = [
-        //     SELECT Id 
-        //     FROM Account 
-        //     WHERE Id in : triggerNew
-        //     ];
         List<ID> idAcc = new List<ID>();
         for(Account a : triggerNew){
             idAcc.add(a.Id);
