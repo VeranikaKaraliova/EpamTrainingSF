@@ -58,7 +58,6 @@ public with sharing class AccountTriggerHelper {
                 idAcc.add(a.Id);
             }
         }
-        //if
         contactsProcessedByFuture(idAcc);
     }
     
