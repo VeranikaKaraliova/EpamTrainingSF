@@ -7,11 +7,15 @@ public with sharing class AccountHTTPHelper {
     public class NewAccountRequestWrapper {
         public String name {get; set;}
         public String phone {get; set;}
-        public String idAcc {get; set;}
+    }
+
+    public class UpAccountRequestWrapper {
+        public String name {get; set;}
+        public String phone {get; set;}
+        public String id {get; set;}
     }
 
     public class AccRecords {
-        public String id;
         public String Name;
         public String Phone;
     }
@@ -52,11 +56,12 @@ public with sharing class AccountHTTPHelper {
  
         response = http.send(request); 
         
-        System.debug('request' + request);
+        System.debug('Request:' + request);
+        System.debug('Response:' + response);
         System.debug(response.getBody());
     }
 
-    public static void upsertAccount(NewAccountRequestWrapper upAccount) {
+    public static void upsertAccount(UpAccountRequestWrapper upAccount) {
  
         request = new HttpRequest();
         request.setMethod('PUT');
@@ -68,5 +73,20 @@ public with sharing class AccountHTTPHelper {
         
         System.debug(response.getBody());
     }
-    
+
+    public static void updateAccount(ID accId, UpAccountRequestWrapper upAccount){
+
+        request = new HttpRequest();
+        request.setMethod('PATCH');
+        String endpointURL = 'callout:MyNamedCredentials/services/apexrest/Account/'; 
+        request.setHeader('Content-Type', 'application/json;charset=UTF-8');
+        request.setEndpoint(endpointURL + accId);
+        request.setBody(JSON.serialize(upAccount));
+
+        response = http.send(request); 
+
+        System.debug('Request:' + request);
+        System.debug('Response:' + response);
+        System.debug(response.getBody());
+    }
 }
