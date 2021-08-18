@@ -20,7 +20,7 @@ public with sharing class AccountHTTPHelper {
         public String Phone;
     }
  
-    public static void getAccount(Id accId) {
+    public static HttpResponse getAccount(Id accId) {
  
         request = new HttpRequest();
         request.setMethod('GET');
@@ -33,9 +33,11 @@ public with sharing class AccountHTTPHelper {
         System.debug('Response:' + response);
         System.debug(response.getBody());
         System.debug('jsonAcc' + jsonAcc);
+
+        return response;
     }
 
-    public static void addAccount(NewAccountRequestWrapper newAccount) {
+    public static HttpResponse addAccount(NewAccountRequestWrapper newAccount) {
  
         request = new HttpRequest();
         request.setMethod('POST');
@@ -46,9 +48,11 @@ public with sharing class AccountHTTPHelper {
         response = http.send(request); 
         
         System.debug(response.getBody());
+
+        return response;
     }
 
-    public static void deleteAccount(Id accId) {
+    public static HttpResponse deleteAccount(Id accId) {
  
         request = new HttpRequest();
         request.setMethod('DELETE');
@@ -59,9 +63,11 @@ public with sharing class AccountHTTPHelper {
         System.debug('Request:' + request);
         System.debug('Response:' + response);
         System.debug(response.getBody());
+
+        return response;
     }
 
-    public static void upsertAccount(UpAccountRequestWrapper upAccount) {
+    public static HttpResponse upsertAccount(UpAccountRequestWrapper upAccount) {
  
         request = new HttpRequest();
         request.setMethod('PUT');
@@ -72,9 +78,11 @@ public with sharing class AccountHTTPHelper {
         response = http.send(request); 
         
         System.debug(response.getBody());
+
+        return response;
     }
 
-    public static void updateAccount(ID accId, UpAccountRequestWrapper upAccount){
+    public static HttpResponse updateAccount(ID accId, UpAccountRequestWrapper upAccount){
 
         request = new HttpRequest();
         request.setMethod('PATCH');
@@ -88,5 +96,7 @@ public with sharing class AccountHTTPHelper {
         System.debug('Request:' + request);
         System.debug('Response:' + response);
         System.debug(response.getBody());
+
+        return response;
     }
 }
