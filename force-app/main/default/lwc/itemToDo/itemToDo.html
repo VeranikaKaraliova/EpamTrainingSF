@@ -1,0 +1,21 @@
+<template>
+  <lightning-card >
+
+    <c-list-to-do onselect={viewTodo}>
+    </c-list-to-do>
+
+    <template if:true={selectedTodo}>
+      <lightning-layout-item>
+        <div class="container-record">
+          <div class="container-img">
+            <img width="30" src="https://i.pinimg.com/564x/40/bc/24/40bc249f9d661c3554bf6fd4038b6974.jpg">
+          </div>
+          <div>
+            <p class="todoName">{selectedTodo.Name}</a></p>
+          </div>
+        </div>
+      </lightning-layout-item>
+    </template>
+
+  </lightning-card>
+</template>

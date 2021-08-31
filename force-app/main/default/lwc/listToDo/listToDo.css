@@ -1,0 +1,21 @@
+span{
+  font-weight: bolder;
+  color: #656565;
+}
+
+.container-record{
+  display: flex;
+  margin: 1rem;
+  padding: 0 0 .5rem;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px #c2c2c2;
+}
+
+.container-img{
+  margin: .5rem;
+}
+
+.todoName{
+  font-size: 1.2rem;
+  font-weight: bold;
+}

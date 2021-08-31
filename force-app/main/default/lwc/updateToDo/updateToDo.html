@@ -1,0 +1,61 @@
+<template>
+  <lightning-card title="List todo" icon-name="standard:shift_pattern_entry">
+
+    <template if:true={toDos}>
+      <template for:each={toDos.data} for:item=todo>
+        <div key={todo.Id} class="container-record">
+          <div class="container-img">
+            <img width="30" src="https://i.pinimg.com/564x/40/bc/24/40bc249f9d661c3554bf6fd4038b6974.jpg">
+          </div>
+          <div class="container-todoName">
+            <p class="todoName">{todo.Name}</p>
+          </div>
+          <lightning-button-icon class="container-btn-icon"
+                                icon-name="utility:edit" 
+                                onclick={openWindow}
+                                data-recordid={todo.Id}>
+
+          </lightning-button-icon>
+        </div>
+      </template>
+    </template>
+    <template if:false={toDos.data}>
+      <div class="container-record">
+        <p>List Todo is empty</p>
+      </div>
+    </template>
+
+    <template if:true={modalWindow}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+          <!-- header -->
+          <header class="slds-modal__header">
+            <button class="slds-button slds-modal__close slds-button_inverse slds-m-right_x-small" title="Close" onclick={closeWindow}>
+              X
+            </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Update Todo</h2>
+          </header>
+
+          <!-- body -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-record-form object-api-name={objectApiName} 
+                                        record-id={recordId} 
+                                        fields={fields}
+                                        onsuccess={handleSuccess}>
+            </lightning-record-form>
+              </div>
+          </div>
+
+          <!-- footer modal window-->
+          <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={closeWindow}>Close</button>
+          </footer>
+
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+  </lightning-card>
+</template>
