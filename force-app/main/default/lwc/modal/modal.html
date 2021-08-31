@@ -1,0 +1,46 @@
+<template>
+  <lightning-card title="Create new Todo" icon-name="standard:record_create">
+    <button class="slds-button slds-button_neutral slds-m-left_small" 
+            onclick={openWindow}>
+      Create Todo
+    </button>
+
+    <template if:true={modalWindow}>
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+          <!-- header -->
+          <header class="slds-modal__header">
+            <button class="slds-button slds-modal__close slds-button_inverse slds-m-right_x-small" title="Close" onclick={closeWindow}>
+              X
+            </button>
+            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Create New Todo</h2>
+          </header>
+
+          <!-- body -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <lightning-record-form object-api-name={objectApiName} fields={fields} onsuccess={handleSuccess}>
+              <div class="slds-modal__footer">
+                <lightning-button class="slds-button slds-button_brand" type="submit" name="update" label="Create">
+                </lightning-button>
+              </div>
+            </lightning-record-form>
+          </div>
+
+          <!-- footer modal window-->
+          <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_neutral" onclick={closeWindow}>Close</button>
+            <!-- <button class="slds-button slds-button_brand" onclick={closeWindow}>Save</button> -->
+          </footer>
+
+        </div>
+      </section>
+      <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    
+    <!-- footer card -->
+    <footer class="slds-m-top_x-small slds-p-left_small">
+      <div class="slds-border_top slds-p-top_small">Creating a new Todo using a modal window</div>
+    </footer>
+  </lightning-card>
+</template>

@@ -1,0 +1,27 @@
+<template>
+  <lightning-card title="Search todo by name" icon-name="standard:record_lookup">
+
+    <lightning-input type="search" 
+                    placeholder="input name..." 
+                    class="slds-m-left_small slds-m-right_small"
+                    onchange={findeRecord}>
+    </lightning-input>
+
+    <template if:true={listTodo.data}>
+      <template for:each={listTodo.data} for:item=todo>
+        <div key={todo.Id} class="container-record">
+          <div class="container-img">
+            <img width="30" src="https://i.pinimg.com/564x/40/bc/24/40bc249f9d661c3554bf6fd4038b6974.jpg">
+          </div>
+          <div>
+            <p class="todoName">{todo.Name}</p>
+            <p><span>Creation Date: </span>{todo.Creation_Date__c}</p>
+            <p><span>Priority: </span>{todo.Priority__c}</p>
+            <p><span>Category: </span>{todo.Category__c}</p>
+          </div>
+        </div>
+      </template>
+    </template>
+    
+  </lightning-card>  
+</template>

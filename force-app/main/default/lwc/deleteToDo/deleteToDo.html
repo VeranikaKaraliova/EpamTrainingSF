@@ -1,0 +1,39 @@
+<template>
+  <lightning-card title="Delete Todo" icon-name="standard:record_delete">
+    <template if:true={toDos}>
+      <div class="layout-headr">
+        <lightning-layout-item class="layout-record-headr" title="Name">
+          <h2>Name</h2>
+        </lightning-layout-item>
+        <lightning-layout-item class="layout-record-headr" title="Priority">
+          <h2>Priority</h2>
+        </lightning-layout-item>
+        <lightning-layout-item class="layout-record-headr" title="Is done?">
+          <h2>Is done?</h2>
+        </lightning-layout-item>
+        <lightning-layout-item class="layout-record-headr">
+          <h2>Delete</h2>
+        </lightning-layout-item>
+      </div>
+      <template for:each={toDos} for:item='item'>
+        <lightning-layout key={item.Id} class="layout-record-container">
+          <lightning-layout-item class="layout-record" title="Name">
+            {item.Name}
+          </lightning-layout-item>
+          <lightning-layout-item class="layout-record" title="Priority">
+            {item.Priority__c}
+          </lightning-layout-item>
+          <lightning-layout-item class="layout-record" title="Is done?">
+            {item.Is_done__c}
+          </lightning-layout-item>
+          <lightning-layout-item class="layout-record">
+            <lightning-button-icon icon-name="utility:delete" 
+                                  onclick={deleteRecord}
+                                  data-recordid={item.Id}>
+            </lightning-button-icon>
+          </lightning-layout-item>
+        </lightning-layout>
+      </template>
+    </template>
+  </lightning-card>
+</template>

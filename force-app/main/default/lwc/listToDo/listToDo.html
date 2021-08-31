@@ -1,0 +1,24 @@
+<template>
+  <lightning-card title="List todo" icon-name="standard:shift_pattern_entry">
+    <template if:true={toDos}>
+      <template for:each={toDos} for:item=todo>
+        <div key={todo.Id} class="container-record">
+          <div class="container-img">
+            <img width="30" src="https://i.pinimg.com/564x/40/bc/24/40bc249f9d661c3554bf6fd4038b6974.jpg">
+          </div>
+          <div>
+            <p class="todoName" ><a href="#" data-totoid={todo.Id} onclick={handlClick}>{todo.Name}</a></p>
+            <p><span>Creation Date: </span>{todo.Creation_Date__c}</p>
+              <p><span>Priority: </span>{todo.Priority__c}</p>
+            <p><span>Category: </span>{todo.Category__c}</p>
+          </div>
+        </div>
+      </template>
+    </template>
+    <template if:false={toDos}>
+      <div class="container-record">
+        <p>List Todo is empty</p>
+      </div>
+    </template>
+  </lightning-card>
+</template>
